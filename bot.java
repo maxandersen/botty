@@ -2,8 +2,8 @@
 // //DEPS <dependency1> <dependency2>
 //DEPS io.smallrye.reactive:mutiny:0.11.0
 //DEPS io.quarkiverse.githubapp:quarkiverse-github-app:0.0.1
+//DEPS io.quarkus:quarkus-bootstrap-gradle-resolver:1.10.3.Final
 //FILES application.properties
-package booty;
 
 import static java.lang.System.*;
 
@@ -24,26 +24,12 @@ import io.quarkus.runtime.StartupEvent;
 import org.jboss.logging.Logger;
 
 
-@QuarkusMain
-public class bot implements QuarkusApplication {
+public class bot {
 
   private static final Logger LOG = Logger.getLogger(bot.class);
 
-  public static void main(String[] args) {
-    Quarkus.run(bot.class, args);
-  }
-
-    void init(@Observes StartupEvent startupEvent) {
-            LOG.info("››› xybot running " + this);
-    }
-    
     void onOpen(@Issue.Opened GHEventPayload.Issue issuePayload) throws IOException {
   		issuePayload.getIssue().comment("Hello from MyGitHubApp");
     }
 
-  @Override
-  public int run(String... args) throws Exception {
-    Quarkus.waitForExit();
-    return 0;
-  }
 }
