@@ -1,10 +1,10 @@
 ///usr/bin/env jbang "$0" "$@" ; exit $?
 //DEPS io.smallrye.reactive:mutiny:0.11.0
 //DEPS io.quarkiverse.githubapp:quarkiverse-github-app:0.0.1
-//FILES application.properties
+//Q:CONFIG quarkus.github-app.debug.payload-directory=payloads
+//Q:CONFIG quarkus.log.category."io.quarkiverse".level=DEBUG
 
 import java.io.IOException;
-import java.lang.System.Logger;
 
 import org.kohsuke.github.GHEventPayload;
 
